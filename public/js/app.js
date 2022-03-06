@@ -24527,6 +24527,7 @@ __webpack_require__.r(__webpack_exports__);
     addUser: function addUser(datafromemit) {
       var _this3 = this;
 
+      this.addUserSuccess = false;
       axios.post('/user_save', datafromemit.fields).then(function (response) {
         _this3.addUserSuccess = true;
         _this3.errors = {};

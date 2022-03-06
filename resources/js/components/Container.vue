@@ -66,6 +66,7 @@ export default {
             this.success = '';
         },
         addUser(datafromemit){
+                this.addUserSuccess = false;
                 axios.post('/user_save', datafromemit.fields).then(response => {
                     this.addUserSuccess = true;
                     this.errors = {};
