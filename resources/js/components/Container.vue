@@ -3,7 +3,8 @@
     <div class="row">
         <div class="col-md-3">
             <user-add v-on:addUser="addUser" 
-                 :errors="errors" 
+                 :errors="errors"
+                 :addUserSuccess="addUserSuccess" 
                  >
             </user-add>
         </div>
@@ -41,6 +42,7 @@ export default {
             errors:{},
             updateErrors:{},
             success:'',
+            addUserSuccess:false,
          }
     },
 
@@ -65,10 +67,13 @@ export default {
         },
         addUser(datafromemit){
                 axios.post('/user_save', datafromemit.fields).then(response => {
+                    this.addUserSuccess = true;
+                    this.errors = {};
                     this.fetchAllUser();
                 }).catch(error => {
                     if (error.response.status == 422) {
                         this.errors = error.response.data.errors;
+                        this.addUserSuccess = false;
                     }
                 });
         },    

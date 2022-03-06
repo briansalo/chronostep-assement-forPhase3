@@ -24456,7 +24456,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["errors"],
+  props: ["errors", "addUserSuccess"],
   data: function data() {
     return {
       fields: {}
@@ -24500,7 +24500,8 @@ __webpack_require__.r(__webpack_exports__);
       editusers: [],
       errors: {},
       updateErrors: {},
-      success: ''
+      success: '',
+      addUserSuccess: false
     };
   },
   created: function created() {
@@ -24527,10 +24528,14 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       axios.post('/user_save', datafromemit.fields).then(function (response) {
+        _this3.addUserSuccess = true;
+        _this3.errors = {};
+
         _this3.fetchAllUser();
       })["catch"](function (error) {
         if (error.response.status == 422) {
           _this3.errors = error.response.data.errors;
+          _this3.addUserSuccess = false;
         }
       });
     },
@@ -24694,8 +24699,12 @@ var _hoisted_19 = {
   key: 0,
   "class": "invalid-feedback"
 };
+var _hoisted_20 = {
+  key: 0,
+  "class": "alert alert-success mt-1"
+};
 
-var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "submit",
   "class": "btn btn-primary mt-2"
 }, " Add User ", -1
@@ -24759,7 +24768,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* CLASS */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.fields.password]]), $props.errors && $props.errors.password ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.errors.password[0]), 1
   /* TEXT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("row"), _hoisted_20], 32
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("row"), $props.addUserSuccess ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_20, " User added successfully. ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_21], 32
   /* HYDRATE_EVENTS */
   )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("card-body")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("card")], 2112
   /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */
@@ -24800,10 +24809,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_user_add, {
     onAddUser: $options.addUser,
-    errors: $data.errors
+    errors: $data.errors,
+    addUserSuccess: $data.addUserSuccess
   }, null, 8
   /* PROPS */
-  , ["onAddUser", "errors"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_user_list, {
+  , ["onAddUser", "errors", "addUserSuccess"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_user_list, {
     users: $data.users,
     updateErrors: $data.updateErrors,
     success: $data.success,

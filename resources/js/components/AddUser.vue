@@ -47,7 +47,9 @@
                         </div>
                     </div>         
                 </div><!--row-->
-                    
+                <div class="alert alert-success mt-1" v-if="addUserSuccess">
+                        User added successfully.
+                </div>
                 <button type="submit" class="btn btn-primary mt-2">
                     Add User
                 </button>
@@ -58,7 +60,7 @@
 
 <script>
 export default {
-   props: ["errors"],
+   props: ["errors","addUserSuccess"],
     data(){
         return {
             fields: {},
