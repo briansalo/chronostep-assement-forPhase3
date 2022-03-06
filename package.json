@@ -26,6 +26,7 @@
     },
     "dependencies": {
         "laravel-echo": "^1.11.3",
+        "laravel-vue-pagination": "^3.0.0",
         "pusher-js": "^7.0.6",
         "vue": "^3.2.31"
     }

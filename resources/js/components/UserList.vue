@@ -100,7 +100,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(user,index) in users" :key="index">
+                        <tr v-for="(user,index) in users.data" :key="index">
                             <td>{{user.id}}</td>
                             <td>{{user.first_name}} {{user.last_name}}</td>
                             <td>{{user.email}}</td>
@@ -118,19 +118,21 @@
                               </button>
                             </td>
                         </tr>
-                        
                     </tbody>
                 </table>
+                          <Pagination :data="users" @pagination-change-page="getPaginationResults" />
             </div><!--card-body-->
         </div><!--card-->
         
 </template>
 
 <script>
-
+import LaravelVuePagination from 'laravel-vue-pagination';
 export default {
    props: ["users","updateErrors","success"],
-
+    components: {
+        'Pagination': LaravelVuePagination
+    },
     data(){
         return {
             selectedDeleteId:'',
@@ -140,7 +142,19 @@ export default {
             fields:{},
         }
     },
+
+    mounted() {
+
+        this.getPaginationResults();
+    },
+
     methods:{
+
+          getPaginationResults(page=1){
+                 this.$emit('paginate',{
+                   page:page
+                 }); 
+          },
 
           userEdit(userId){
                 this.editId = userId

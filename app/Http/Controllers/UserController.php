@@ -14,7 +14,7 @@ class UserController extends Controller
 {
     public function UserList(){
 
-        $alluser = User::all();
+        $alluser = User::latest()->paginate(5);
         return $alluser;
     }
 

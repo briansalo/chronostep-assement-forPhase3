@@ -16,6 +16,7 @@
                 v-on:updateUser="updateUser"
                 v-on:deleteUser="deleteUser"
                 v-on:toggleSuccess="toggleSuccess"
+                v-on:paginate="paginate"
                 >
             </user-list>
         </div>    
@@ -61,6 +62,14 @@ export default {
                    this.users = response.data
                 })
         },
+
+        paginate(page){
+            axios.get('/user_list?page=' + page.page)
+                .then((response)=>{
+                   this.users = response.data
+                })
+        },
+
         toggleSuccess(){
             this.updateErrors = {};
             this.success = '';
